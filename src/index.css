@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OmniDent AI Design System */
+
+@layer base {
+  :root {
+    /* Core Gradient Palette */
+    --gradient-start: 220 70% 35%; /* #1d3785 dark blue */
+    --gradient-end: 170 60% 60%; /* #52d7c1 teal */
+
+    /* Surface Colors - Blue-tinted for brand consistency */
+    --surface: 0 0% 100%; /* #ffffff */
+    --surface-2: 220 30% 98%; /* #f8f9fc blue-tinted surface */
+    --surface-3: 220 25% 96%; /* subtle elevated surface */
+
+    /* Text Colors - Blue-tinted for brand consistency */
+    --ink-1: 220 25% 12%; /* #1a1d2e primary text */
+    --ink-2: 220 15% 40%; /* #5a5f73 secondary text */
+    --ink-3: 220 12% 60%; /* tertiary text */
+
+    /* Border & Lines - Blue-tinted for brand consistency */
+    --line: 220 30% 92%; /* #e8eaf2 soft blue borders */
+    --line-2: 220 25% 88%; /* stronger borders */
+
+    /* Semantic Colors - Updated to complement brand colors */
+    --success: 170 60% 50%; /* teal success */
+    --warning: 45 100% 60%;
+    --error: 0 80% 60%;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsl(var(--gradient-start) / 0.1);
+    --shadow-md: 0 8px 24px hsl(var(--gradient-start) / 0.15);
+    --shadow-lg: 0 16px 40px hsl(var(--gradient-start) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--gradient-end) / 0.3);
+
+    /* Legacy shadcn mappings */
+    --background: var(--surface);
+    --foreground: var(--ink-1);
+    --card: var(--surface-2);
+    --card-foreground: var(--ink-1);
+    --popover: var(--surface);
+    --popover-foreground: var(--ink-1);
+    --primary: var(--gradient-start);
+    --primary-foreground: var(--surface);
+    --secondary: var(--surface-3);
+    --secondary-foreground: var(--ink-1);
+    --muted: var(--surface-3);
+    --muted-foreground: var(--ink-2);
+    --accent: var(--surface-3);
+    --accent-foreground: var(--ink-1);
+    --destructive: var(--error);
+    --destructive-foreground: var(--surface);
+    --border: var(--line);
+    --input: var(--line);
+    --ring: var(--gradient-start);
+    --radius: 0.75rem;
+
+    /* Animation Properties */
+    --border-angle: 0deg;
+  }
+
+  .dark {
+    /* Dark Surface Colors - Blue-tinted for brand consistency */
+    --surface: 220 25% 6%; /* #0a0d14 */
+    --surface-2: 220 22% 8%; /* #0e111d */
+    --surface-3: 220 20% 10%; /* elevated surface */
+
+    /* Dark Text Colors - Blue-tinted for brand consistency */
+    --ink-1: 220 20% 96%; /* #f4f6ff primary text */
+    --ink-2: 220 15% 75%; /* #b8c0d6 secondary text */
+    --ink-3: 220 12% 60%; /* tertiary text */
+
+    /* Dark Border & Lines - Blue-tinted for brand consistency */
+    --line: 220 20% 16%; /* #252a40 */
+    --line-2: 220 18% 20%; /* stronger borders */
+
+    /* Dark Shadows - Blue-tinted for brand consistency */
+    --shadow-sm: 0 2px 8px hsl(220 50% 4% / 0.5);
+    --shadow-md: 0 8px 24px hsl(220 50% 4% / 0.6);
+    --shadow-lg: 0 16px 40px hsl(220 50% 4% / 0.7);
+    --shadow-glow: 0 0 40px hsl(var(--gradient-end) / 0.4);
+  }
+}
+
+@layer components {
+  /* Typography */
+  .font-heading {
+    font-family:
+      "Sora",
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      sans-serif;
+  }
+
+  .font-body {
+    font-family:
+      "Manrope",
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      sans-serif;
+  }
+
+  /* Gradient Text Utility */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r;
+    background-image: linear-gradient(90deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+  }
+
+  .text-gradient-reverse {
+    @apply bg-clip-text text-transparent bg-gradient-to-r;
+    background-image: linear-gradient(90deg, hsl(var(--gradient-end)), hsl(var(--gradient-start)));
+  }
+
+  /* Button Variants */
+  .btn-gradient-primary {
+    @apply relative inline-flex items-center justify-center rounded-xl px-6 py-3 font-medium font-heading;
+    background: linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)));
+    color: hsl(var(--surface));
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-gradient-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn-gradient-outline {
+    @apply relative inline-flex items-center justify-center rounded-xl px-6 py-3 font-medium font-heading;
+    background:
+      linear-gradient(hsl(var(--surface)), hsl(var(--surface))) padding-box,
+      linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-end))) border-box;
+    border: 2px solid transparent;
+    color: hsl(var(--ink-1));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-gradient-outline:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Card Components */
+  .card-gradient {
+    @apply relative overflow-hidden rounded-2xl border bg-white/50 backdrop-blur-sm;
+    border-color: hsl(var(--line));
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-gradient:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .dark .card-gradient {
+    @apply bg-black/20;
+  }
+
+  /* Snake Border Animation */
+  .card-snake {
+    @apply relative overflow-hidden rounded-2xl;
+    background: hsl(var(--surface-2));
+    border: 2px solid hsl(var(--line));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-snake::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--border-angle),
+      transparent 40%,
+      hsl(var(--gradient-start)),
+      hsl(var(--gradient-end)),
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .card-snake:hover::before {
+    opacity: 1;
+    animation: border-rotate 3s linear infinite;
+  }
+
+  .card-snake:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Hero Background Effects */
+  .hero-glow {
+    @apply absolute inset-0 -z-10;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 20%,
+      hsl(var(--gradient-start) / 0.15),
+      transparent
+    );
+  }
+
+  .dark .hero-glow {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 20%,
+      hsl(var(--gradient-start) / 0.25),
+      transparent
+    );
+  }
+
+  /* Interactive Calendar Styles */
+  .calendar-interactive {
+    @apply rounded-xl border border-line bg-surface-2 p-4;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Dashboard Preview Styles */
+  .dashboard-card {
+    @apply rounded-xl border border-line bg-surface p-4;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(8px);
+  }
+
+  @keyframes border-rotate {
+    to {
+      --border-angle: 360deg;
+    }
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
